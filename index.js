@@ -22,7 +22,7 @@ app.get("/api/:time", function(req, res) {
   const time = req.params.time
   const date = new Date( +time || time )
   
-  res.json({unix: date.getTime(), utc: date.toString()})
+  res.json({unix: date.getTime(), utc: date.toGMTString()})
 })
 
 // your first API endpoint...
