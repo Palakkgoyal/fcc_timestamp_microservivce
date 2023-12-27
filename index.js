@@ -22,6 +22,17 @@ app.get("/api/:time", function(req, res) {
   const time = req.params.time
   const date = new Date( +time || time )
   
+  isValidDate(date) ? 
+  res.json({unix: date.getTime(), utc: date.toGMTString()}) : 
+  res.json({ error : "Invalid Date" })
+})
+
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
+
+app.get("/api", function(req, res) {
+  const date = new Date()
   res.json({unix: date.getTime(), utc: date.toGMTString()})
 })
 
